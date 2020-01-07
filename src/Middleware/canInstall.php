@@ -21,7 +21,7 @@ class canInstall
     public function handle($request, Closure $next)
     {
         if (!Auth()->guard('admin')->check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('login');
         }
 
         if($this->alreadyInstalled()) {
