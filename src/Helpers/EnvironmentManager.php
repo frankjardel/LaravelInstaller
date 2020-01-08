@@ -33,7 +33,7 @@ class EnvironmentManager
      */
     public function getEnvContent()
     {
-        if (! file_exists($this->envPath)) {
+        if (!file_exists($this->envPath)) {
             if (file_exists($this->envExamplePath)) {
                 copy($this->envExamplePath, $this->envPath);
             } else {
@@ -49,8 +49,7 @@ class EnvironmentManager
      *
      * @return string
      */
-    public function getEnvPath()
-    {
+    public function getEnvPath() {
         return $this->envPath;
     }
 
@@ -59,8 +58,7 @@ class EnvironmentManager
      *
      * @return string
      */
-    public function getEnvExamplePath()
-    {
+    public function getEnvExamplePath() {
         return $this->envExamplePath;
     }
 
@@ -76,7 +74,8 @@ class EnvironmentManager
 
         try {
             file_put_contents($this->envPath, $input->get('envConfig'));
-        } catch (Exception $e) {
+        }
+        catch(Exception $e) {
             $message = trans('installer_messages.environment.errors');
         }
 
@@ -94,38 +93,51 @@ class EnvironmentManager
         $results = trans('installer_messages.environment.success');
 
         $envFileData =
-        'APP_NAME=\''.$request->app_name."'\n".
-        'APP_ENV='.$request->environment."\n".
-        'APP_KEY='.'base64:'.base64_encode(str_random(32))."\n".
-        'APP_DEBUG='.$request->app_debug."\n".
-        'APP_LOG_LEVEL='.$request->app_log_level."\n".
-        'APP_URL='.$request->app_url."\n\n".
-        'DB_CONNECTION='.$request->database_connection."\n".
-        'DB_HOST='.$request->database_hostname."\n".
-        'DB_PORT='.$request->database_port."\n".
-        'DB_DATABASE='.$request->database_name."\n".
-        'DB_USERNAME='.$request->database_username."\n".
-        'DB_PASSWORD='.$request->database_password."\n\n".
-        'BROADCAST_DRIVER='.$request->broadcast_driver."\n".
-        'CACHE_DRIVER='.$request->cache_driver."\n".
-        'SESSION_DRIVER='.$request->session_driver."\n".
-        'QUEUE_DRIVER='.$request->queue_driver."\n\n".
-        'REDIS_HOST='.$request->redis_hostname."\n".
-        'REDIS_PASSWORD='.$request->redis_password."\n".
-        'REDIS_PORT='.$request->redis_port."\n\n".
-        'MAIL_DRIVER='.$request->mail_driver."\n".
-        'MAIL_HOST='.$request->mail_host."\n".
-        'MAIL_PORT='.$request->mail_port."\n".
-        'MAIL_USERNAME='.$request->mail_username."\n".
-        'MAIL_PASSWORD='.$request->mail_password."\n".
-        'MAIL_ENCRYPTION='.$request->mail_encryption."\n\n".
-        'PUSHER_APP_ID='.$request->pusher_app_id."\n".
-        'PUSHER_APP_KEY='.$request->pusher_app_key."\n".
-        'PUSHER_APP_SECRET='.$request->pusher_app_secret;
+        'APP_NAME=\'' . $request->app_name . "'\n" .
+        'APP_ENV=' . $request->environment . "\n" .
+        'APP_KEY=' . 'base64:bODi8VtmENqnjklBmNJzQcTTSC8jNjBysfnjQN59btE=' . "\n" .
+        'APP_DEBUG=' . $request->app_debug . "\n" .
+        'APP_LOG_LEVEL=' . $request->app_log_level . "\n" .
+        'APP_URL=' . $request->app_url . "\n" .
+        'APP_URL_FRONT=' . $request->app_url_front . "\n\n" .
+        'DB_CONNECTION=' . $request->database_connection . "\n" .
+        'DB_HOST=' . $request->database_hostname . "\n" .
+        'DB_PORT=' . $request->database_port . "\n" .
+        'DB_DATABASE=' . $request->database_name . "\n" .
+        'DB_USERNAME=' . $request->database_username . "\n" .
+        'DB_PASSWORD=' . $request->database_password . "\n\n" .
+        'BROADCAST_DRIVER=' . $request->broadcast_driver . "\n" .
+        'CACHE_DRIVER=' . $request->cache_driver . "\n" .
+        'SESSION_DRIVER=' . $request->session_driver . "\n" .
+        'QUEUE_DRIVER=' . $request->queue_driver . "\n\n" .
+        'REDIS_HOST=' . $request->redis_hostname . "\n" .
+        'REDIS_PASSWORD=' . $request->redis_password . "\n" .
+        'REDIS_PORT=' . $request->redis_port . "\n\n" .
+        'MAIL_ADMIN=' . $request->mail_admin . "\n" .
+        'MAIL_FROM_ADDRESS=' . $request->mail_username . "\n" .
+        'MAIL_FROM_NAME=\'' . $request->app_name . "'\n" .
+        'MAIL_DRIVER=' . $request->mail_driver . "\n" .
+        'MAIL_HOST=' . $request->mail_host . "\n" .
+        'MAIL_PORT=' . $request->mail_port . "\n" .
+        'MAIL_USERNAME=' . $request->mail_username . "\n" .
+        'MAIL_PASSWORD=' . $request->mail_password . "\n" .
+        'MAIL_ENCRYPTION=' . $request->mail_encryption . "\n\n" .
+        'PUSHER_APP_ID=' . $request->pusher_app_id . "\n" .
+        'PUSHER_APP_KEY=' . $request->pusher_app_key . "\n" .
+        'PUSHER_APP_SECRET=' . $request->pusher_app_secret . "\n\n" .
+
+        'GOOGLE_ID=' . $request->google_oauth_id . "\n" .
+        'GOOGLE_SECRET=' . $request->google_oauth_secret . "\n" .
+        'GOOGLE_URL=' . $request->google_oauth_redirect . "\n\n" .
+
+        'MP_APP_ID=' . $request->mp_app_id . "\n" .
+        'MP_APP_SECRET=' . $request->mp_app_secret;
 
         try {
             file_put_contents($this->envPath, $envFileData);
-        } catch (Exception $e) {
+
+        }
+        catch(Exception $e) {
             $results = trans('installer_messages.environment.errors');
         }
 
